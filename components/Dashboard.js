@@ -42,8 +42,8 @@ const [correctAnswersError, setCorrectAnswersError] = useState('');
   const handlePercentileChange = (e) => {
     const value = e.target.value;
     setPercentile(value);
-    if (value > 100) {
-      setPercentileError("Percentile cannot exceed 100%");
+    if (value > 100 || value < 1) {
+      setPercentileError("Percentile should be in 1-100");
     } else {
       setPercentileError("");
     }
@@ -52,22 +52,21 @@ const [correctAnswersError, setCorrectAnswersError] = useState('');
   const handleCorrectAnswersChange = (e) => {
     const value = e.target.value;
     setCorrectAnswers(value);
-    if (value > 15) {
-      setCorrectAnswersError("Correct Answers cannot exceed 15");
+    if (value > 15 || value<1) {
+      setCorrectAnswersError("Correct Answers should be in 1-15");
     } else {
       setCorrectAnswersError("");
     }
   };
   const handleUpdate = () => {
-    if (percentile > 100) {
-      alert("Percentile cannot exceed 100%");
+    if (percentile > 100 || percentile < 1) {
+      alert("Percentile should be in 1-100");
       return;
     }
-    if (correctAnswers > 15) {
-      alert("Correct Answers cannot exceed 15");
+    if (correctAnswers > 15 || correctAnswers < 1) {
+      alert("Correct Answers should be in 1-15");
       return;
     }
-
     // Update the graph data (Optional: You can customize the data update logic)
     const newGraphData = [
       { name: '0', value: percentile || 5 },
